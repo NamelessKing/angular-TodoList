@@ -7,32 +7,32 @@ import { Todo} from 'src/app/models/Todo';
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
-  
+
   @Input() todo: Todo;
-  
+
   constructor() { }
 
   ngOnInit() {
   }
-  
-  //set dynamic classes
-  setClasses(){
-    let classes = {
-      todo:true,
-      'is-complete':this.todo.completed
-    }
+
+  // set dynamic classes
+  setClasses() {
+    const classes = {
+      todo: true,
+      'is-complete': this.todo.completed
+    };
     return classes;
   }
-  
-  
-  onToggle(todo){
+
+
+  onToggle(todo) {
     console.log('toggle');
     todo.completed = !todo.completed;
   }
-  
-  onDelete(todo){
+
+  onDelete(todo) {
     console.log('delete');
   }
-  
+
 
 }
