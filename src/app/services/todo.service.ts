@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from 'src/app/models/Todo';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,26 +9,13 @@ import { Todo } from 'src/app/models/Todo';
 
 export class TodoService {
 
-  constructor() { }
+  todosUrl: string = 'https://jsonplaceholder.typicode.com/todos';
+  todosLimit: string = '?_limit=5';
 
-  getTodos(): Todo[] {
-    return [
-      {
-        id: 1,
-        title: 'Todo 1',
-        completed: true
-      },
-      {
-        id: 2,
-        title: 'Todo 2',
-        completed: true
-      },
-      {
-        id: 3,
-        title: 'Todo 3',
-        completed: false
-      },
-    ];
+  constructor(private http: HttpClient) { }
+
+  getTodos(): Observable<Todo[]> {
+    return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
   }
 
 }
